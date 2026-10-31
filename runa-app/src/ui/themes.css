@@ -1,0 +1,63 @@
+/* Темы. «Как в системе» — без data-theme: действуют правила из app.css. */
+:root[data-theme='light'] {
+  --bg: #ffffff; --side: #f7f7f5; --ink: #1f2328; --muted: #6b7178; --line: #e6e6e3;
+  --hover: rgb(55 53 47 / 0.08); --active: rgb(55 53 47 / 0.12);
+  --accent: #24384a; --accent-ink: #ffffff; --focus: #3c78a8; color-scheme: light;
+}
+:root[data-theme='warm'] {
+  --bg: #fbf7ef; --side: #f3ecdd; --ink: #3a3226; --muted: #7d705c; --line: #e4d9c4;
+  --hover: rgb(110 80 30 / 0.09); --active: rgb(110 80 30 / 0.15);
+  --accent: #8a5a2b; --accent-ink: #ffffff; --focus: #b27a3e; color-scheme: light;
+}
+:root[data-theme='dark'] {
+  --bg: #191919; --side: #202020; --ink: #e6e6e6; --muted: #9b9b9b; --line: #2f2f2f;
+  --hover: rgb(255 255 255 / 0.06); --active: rgb(255 255 255 / 0.1);
+  --accent: #9dbad3; --accent-ink: #0f1418; --focus: #7fb2dc; color-scheme: dark;
+}
+:root[data-theme='midnight'] {
+  --bg: #0f1623; --side: #0a101b; --ink: #dbe4f3; --muted: #8a98b3; --line: #1d2940;
+  --hover: rgb(255 255 255 / 0.06); --active: rgb(120 160 255 / 0.15);
+  --accent: #8db4ff; --accent-ink: #0a101b; --focus: #6ea0ff; color-scheme: dark;
+}
+
+/* Цвета блоков редактора: в editor.css они зависят от системной темы, здесь — от выбранной. */
+:root[data-theme='light'], :root[data-theme='warm'] {
+  --co-gray: #f1f1ef; --co-brown: #f4eeee; --co-orange: #fbecdd; --co-yellow: #fbf3db; --co-green: #edf3ec;
+  --co-blue: #e7f3f8; --co-purple: #f4f0f7; --co-pink: #f9eef3; --co-red: #fdebec;
+  --code-bg: #f7f6f3; --code-ink: #37352f;
+}
+:root[data-theme='warm'] { --code-bg: #f1e9d8; }
+:root[data-theme='dark'], :root[data-theme='midnight'] {
+  --co-gray: #2f2f2f; --co-brown: #4a3228; --co-orange: #5c3b23; --co-yellow: #564328; --co-green: #243d30;
+  --co-blue: #143a4e; --co-purple: #3c2d49; --co-pink: #4e2c3c; --co-red: #522e2a;
+  --code-bg: #262626; --code-ink: #e6e6e6;
+}
+:root[data-theme='midnight'] { --code-bg: #131c2d; --co-gray: #1f2937; }
+:root[data-theme] .bg-gray { background: var(--co-gray); }
+:root[data-theme] .bg-brown { background: var(--co-brown); }
+:root[data-theme] .bg-orange { background: var(--co-orange); }
+:root[data-theme] .bg-yellow { background: var(--co-yellow); }
+:root[data-theme] .bg-green { background: var(--co-green); }
+:root[data-theme] .bg-blue { background: var(--co-blue); }
+:root[data-theme] .bg-purple { background: var(--co-purple); }
+:root[data-theme] .bg-pink { background: var(--co-pink); }
+:root[data-theme] .bg-red { background: var(--co-red); }
+:root[data-theme] .ed-code pre { background: var(--code-bg); }
+:root[data-theme] .ed-code pre code { color: var(--code-ink); }
+/* Выделенный цветом фон текста всегда светлый — текст на нём тёмный. */
+:root .ed mark { color: #1f2328; }
+
+/* Переключатель внизу левой панели */
+.sb-foot { position: sticky; bottom: 0; margin: auto -6px -8px; padding: 10px 14px 12px; background: var(--side); border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.sb-foot-label { font-size: 12px; color: var(--muted); }
+.theme-dots { display: flex; gap: 10px; }
+.theme-dot { position: relative; width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgb(127 127 127 / 0.5); flex: none; }
+.theme-dot::after { content: ''; position: absolute; right: 4px; bottom: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--dot-ink, #888); }
+.theme-dot:hover { transform: scale(1.1); }
+.theme-dot.on { box-shadow: 0 0 0 2px var(--side), 0 0 0 4px var(--focus); }
+.t-auto { background: linear-gradient(135deg, #ffffff 50%, #191919 50%); --dot-ink: transparent; }
+.t-auto::after { display: none; }
+.t-light { background: #ffffff; --dot-ink: #24384a; }
+.t-warm { background: #f3ecdd; --dot-ink: #8a5a2b; }
+.t-dark { background: #191919; --dot-ink: #9dbad3; }
+.t-midnight { background: #0f1623; --dot-ink: #8db4ff; }
